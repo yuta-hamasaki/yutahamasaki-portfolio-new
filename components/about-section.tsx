@@ -155,7 +155,7 @@ export function AboutSection() {
     return () => ctx.revert()
   }, [loading])
 
-  console.log(education)
+
 
   if (loading) {
     return (
@@ -176,10 +176,10 @@ export function AboutSection() {
     <section id="about" ref={sectionRef} className="py-20">
       <div className="container-max section-padding">
         <div className="text-center mb-16">
+          <p className="text-xl sm:text-xl font-bold mb-1">私について</p>
           <h2 ref={titleRef} className="text-3xl sm:text-4xl font-bold mb-4">
             About <span className="gradient-text">Me</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-balance">{profile.title}</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
@@ -187,7 +187,6 @@ export function AboutSection() {
           <div ref={contentRef} className="lg:col-span-1">
             <Card className="h-full">
               <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-4">My Journey</h3>
                 <Image 
                 src={profile.profileImage.url} 
                 alt="{profile.profileImage.alt}"
@@ -195,6 +194,8 @@ export function AboutSection() {
                 height={150}
                 className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
                 />
+                <h3 className="text-[14px] text-center font-semibold">Yuta Hamasaki</h3>
+                <h3 className="text-[14px] text-center font-semibold mb-4">濱﨑雄太</h3>
                 <div className="space-y-4 text-muted-foreground">
                   <p>{profile.bio}</p>
                   <div className="flex items-center gap-2 text-sm">

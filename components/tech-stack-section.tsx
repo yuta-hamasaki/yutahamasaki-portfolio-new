@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useLanguage } from "@/contexts/language-context"
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger)
@@ -63,6 +64,7 @@ export function TechStackSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const categoriesRef = useRef<HTMLDivElement>(null)
+  const { t } = useLanguage()
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -129,11 +131,12 @@ export function TechStackSection() {
     <section id="tech" ref={sectionRef} className="py-20 bg-muted/30">
       <div className="container-max section-padding">
         <div className="text-center mb-16">
+          <p className="text-xl sm:text-xl font-bold mb-1">技術スタック</p>
           <h2 ref={titleRef} className="text-3xl sm:text-4xl font-bold mb-4">
             Tech <span className="gradient-text">Stack</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-balance">
-            Technologies and tools I use to bring ideas to life, constantly learning and adapting to new innovations.
+            {t.tech.subtitle}
           </p>
         </div>
 

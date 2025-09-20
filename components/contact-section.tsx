@@ -33,7 +33,7 @@ interface FormErrors {
 export function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
-  const formRef = useRef<HTMLFormElement>(null)
+  const formRef = useRef<HTMLDivElement>(null)
   const contactInfoRef = useRef<HTMLDivElement>(null)
   const { t } = useLanguage()
 

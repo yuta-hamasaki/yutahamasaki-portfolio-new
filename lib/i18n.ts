@@ -74,9 +74,9 @@ export const translations: Record<Language, Translations> = {
       contact: "Contact",
     },
     hero: {
-      title: "Frontend Engineer & Creative Designer",
+      title: "Frontend Engineer",
       subtitle:
-        "I craft exceptional digital experiences through innovative frontend development and thoughtful design. Passionate about creating user-centered solutions that make a difference.",
+        "Leveraging React & TypeScript with modern web technologies and international experience to create user-centered digital experiences from a global perspective.",
       viewWork: "View My Work",
       getInTouch: "Get In Touch",
       scrollToExplore: "Scroll to explore",
@@ -84,7 +84,7 @@ export const translations: Record<Language, Translations> = {
     work: {
       title: "Featured Projects",
       subtitle:
-        "A showcase of my recent work in frontend development and design, featuring modern web applications built with cutting-edge technologies.",
+        "Developed web applications that solve real-world challenges using modern web technologies mastered in Vancouver. Presenting deliverables that balance technical growth with business value creation.",
       featured: "Featured",
       viewLive: "View live project",
       viewSource: "View source code",
@@ -135,7 +135,7 @@ export const translations: Record<Language, Translations> = {
     hero: {
       title: "Frontend-Ingenieur",
       subtitle:
-        "Ich schaffe außergewöhnliche digitale Erlebnisse durch innovative Frontend-Entwicklung und durchdachtes Design. Leidenschaftlich für die Schaffung benutzerzentrierter Lösungen, die einen Unterschied machen.",
+        "Nutze React & TypeScript mit modernen Web-Technologien und internationaler Erfahrung, um nutzerzentrierte digitale Erlebnisse aus globaler Perspektive zu schaffen.",
       viewWork: "Meine Arbeit Ansehen",
       getInTouch: "Kontakt Aufnehmen",
       scrollToExplore: "Scrollen zum Erkunden",
@@ -143,7 +143,7 @@ export const translations: Record<Language, Translations> = {
     work: {
       title: "Ausgewählte Projekte",
       subtitle:
-        "Eine Präsentation meiner neuesten Arbeit in Frontend-Entwicklung und Design, mit modernen Webanwendungen, die mit modernsten Technologien erstellt wurden.",
+        "Entwickelte Web-Anwendungen, die reale Herausforderungen mit modernen Web-Technologien lösen, die ich in Vancouver erlernt habe. Präsentiere Ergebnisse, die technisches Wachstum mit Geschäftswertschöpfung vereinen.",
       featured: "Ausgewählt",
       viewLive: "Live-Projekt ansehen",
       viewSource: "Quellcode ansehen",
@@ -195,7 +195,7 @@ export const translations: Record<Language, Translations> = {
     hero: {
       title: "フロントエンドエンジニア＆クリエイティブデザイナー",
       subtitle:
-        "革新的なフロントエンド開発と思慮深いデザインを通じて、卓越したデジタル体験を創造します。違いを生み出すユーザー中心のソリューション作りに情熱を注いでいます。",
+        "React・TypeScriptを中心としたモダンWeb技術と国際経験を活かし、グローバルな視点でユーザー中心のデジタル体験を創造しています。",
       viewWork: "成果物を見る",
       getInTouch: "お問い合わせ",
       scrollToExplore: "Scroll to explore",
@@ -203,7 +203,7 @@ export const translations: Record<Language, Translations> = {
     work: {
       title: "注目プロジェクト",
       subtitle:
-        "最先端技術で構築された現代的なWebアプリケーションを特徴とする、フロントエンド開発とデザインにおける私の最近の作品のショーケース。",
+        "バンクーバーで習得したモダンWeb技術を活用し、実際の課題を解決するWebアプリケーションを開発しました。技術的成長とビジネス価値創出を両立した成果物を紹介します。",
       featured: "注目",
       viewLive: "ライブプロジェクトを見る",
       viewSource: "ソースコードを見る",
@@ -238,7 +238,7 @@ export const translations: Record<Language, Translations> = {
     },
     common: {
       loading: "読み込み中...",
-      error: "何かが間違っています",
+      error: "エラーが発生しました。",
       retry: "再試行",
     },
   },
@@ -250,4 +250,4 @@ export const languages: { code: Language; name: string; flag: string }[] = [
   { code: "ja", name: "日本語", flag: "🇯🇵" },
 ]
 
-export const defaultLanguage: Language = "en"
+export const defaultLanguage: Language = "ja"

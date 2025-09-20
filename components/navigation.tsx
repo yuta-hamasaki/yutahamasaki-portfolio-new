@@ -62,7 +62,8 @@ export function Navigation() {
 
         {/* Mobile Navigation Menu */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-border">
+          <div className={`md:hidden py-4 border-t border-border transition-all duration-300 ${
+        scrolled ? "bg-background/80 backdrop-blur-md}" : "bg-background/90"}`}>
             <div className="flex flex-col space-y-4">
               {navItems.map((item) => (
                 <a

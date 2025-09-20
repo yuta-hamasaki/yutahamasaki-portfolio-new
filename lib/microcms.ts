@@ -138,7 +138,6 @@ export const getProfile = async (): Promise<Profile | null> => {
       endpoint: "profile",
     })
 
-    console.log("Profile response:", response) // Debug log
     return response
   } catch (error) {
     console.error("Error fetching profile:", error)
