@@ -8,13 +8,13 @@ import { LanguageProvider } from "@/contexts/language-context"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Portfolio | Frontend Engineer",
-  description: "Yuta Hamasaki portfolio showcasing frontend engineering expertise",
-  keywords: ["frontend", "engineer","Yuta Hamasaki", "portfolio", "web development"],
+  title: "Portfolio | Web Developer",
+  description: "Yuta Hamasaki portfolio showcasing Web development expertise",
+  keywords: ["web", "engineer","Yuta Hamasaki", "portfolio", "web development"],
   authors: [{ name: "Yuta Hamasaki" }],
   openGraph: {
-    title: "Portfolio | Frontend Engineer",
-    description: "Yuta Hamasaki portfolio showcasing frontend engineering expertise",
+    title: "Portfolio | Web Developer",
+    description: "Yuta Hamasaki portfolio showcasing Web development expertise",
     type: "website",
   },
 }
