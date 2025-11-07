@@ -170,7 +170,7 @@ export function ContactSection() {
 
   return (
     <section id="contact" ref={sectionRef} className="py-20 bg-muted/30">
-      <div className="container-max section-padding">
+      <div className=" section-padding">
         <div className="text-center mb-16">
           <h2 ref={titleRef} className="text-3xl sm:text-4xl font-bold mb-4">
             {t.contact.title.split(" ").map((word, index) => (
@@ -182,7 +182,7 @@ export function ContactSection() {
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-balance">{t.contact.subtitle}</p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}
           <Card ref={formRef}>
             <CardContent className="p-8">
@@ -274,7 +274,7 @@ export function ContactSection() {
                     </div>
                     <div>
                       <p className="font-medium">Email</p>
-                      <p className="text-muted-foreground">yutahamasaki.official@gmail.com</p>
+                      <p className="text-muted-foreground break-all">yutahamasaki.official@gmail.com</p>
                     </div>
                   </div>
 
@@ -294,7 +294,7 @@ export function ContactSection() {
             <Card>
               <CardContent className="p-8">
                 <h3 className="text-xl font-semibold mb-6">Follow Me</h3>
-                <div className="flex gap-4">
+                <div className="flex flex-col sm:flex-row gap-4">
                   <Button variant="outline" size="sm" className="flex-1 bg-transparent" asChild>
                     <a href="https://github.com" target="_blank" rel="noopener noreferrer">
                       <Github className="h-4 w-4 mr-2" />

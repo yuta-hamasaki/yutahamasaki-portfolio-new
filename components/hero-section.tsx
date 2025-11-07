@@ -112,7 +112,7 @@ export function HeroSection() {
     <section
       id="hero"
       ref={heroRef}
-      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16"
+      className="min-h-screen flex w-full items-center justify-center relative overflow-hidden pt-16"
     >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-muted/30" />
