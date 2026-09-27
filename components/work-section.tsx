@@ -1,10 +1,10 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useId, useRef, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ExternalLink, Github } from "lucide-react"
+import { ChevronDown, ExternalLink, Github } from "lucide-react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { getProjects, type Project } from "@/lib/microcms"
@@ -129,7 +129,7 @@ export function WorkSection() {
           </p>
         </div>
 
-        <div ref={cardsRef} className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div ref={cardsRef} className="grid items-start gap-6 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
@@ -140,6 +140,30 @@ export function WorkSection() {
 }
 
 function ProjectCard({ project }: { project: Project }) {
+  const descriptionId = useId()
+  const descriptionRef = useRef<HTMLParagraphElement>(null)
+  const [expanded, setExpanded] = useState(false)
+  const [canExpand, setCanExpand] = useState(false)
+
+  useEffect(() => {
+    const description = descriptionRef.current
+    if (!description) return
+
+    const measureDescription = () => {
+      const lineHeight = Number.parseFloat(getComputedStyle(description).lineHeight)
+      setCanExpand(description.scrollHeight > lineHeight * 3 + 1)
+    }
+
+    measureDescription()
+    const observer = new ResizeObserver(measureDescription)
+    observer.observe(description)
+    return () => observer.disconnect()
+  }, [project.description])
+
+  useEffect(() => {
+    ScrollTrigger.refresh()
+  }, [expanded, canExpand])
+
   return (
     <Card
       className={`soft-card project-card group overflow-hidden rounded-lg transition-colors duration-300 hover:border-primary/40 ${
@@ -178,7 +202,30 @@ function ProjectCard({ project }: { project: Project }) {
 
       <CardContent className="p-7">
         <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">{project.title}</h3>
-        <p className="text-muted-foreground mb-4 text-sm leading-relaxed">{project.description}</p>
+        <div className="mb-4">
+          <p
+            id={descriptionId}
+            ref={descriptionRef}
+            className={`text-muted-foreground whitespace-pre-line break-words text-sm leading-relaxed ${expanded ? "" : "line-clamp-3"}`}
+          >
+            {project.description}
+          </p>
+          {canExpand && (
+            <button
+              type="button"
+              aria-expanded={expanded}
+              aria-controls={descriptionId}
+              onClick={() => setExpanded((value) => !value)}
+              className="mt-2 inline-flex min-h-9 items-center gap-1 rounded-sm text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            >
+              {expanded ? "Read less" : "Read more"}
+              <ChevronDown
+                aria-hidden="true"
+                className={`h-4 w-4 transition-transform motion-reduce:transition-none ${expanded ? "rotate-180" : ""}`}
+              />
+            </button>
+          )}
+        </div>
         <div className="flex flex-wrap gap-2">
           {project.technologies.map((tech, index) => (
             <Badge key={index} variant="outline" className="text-xs">
