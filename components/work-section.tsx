@@ -105,7 +105,7 @@ export function WorkSection() {
 
   if (loading) {
     return (
-      <section id="work" className="py-20 bg-muted/30">
+      <section id="work" className="section-shell bg-muted/45">
         <div className="container-max section-padding">
           <div className="text-center">
             <div className="animate-pulse">
@@ -119,11 +119,11 @@ export function WorkSection() {
   }
 
   return (
-    <section id="work" ref={sectionRef} className="py-20 bg-muted/30">
+    <section id="work" ref={sectionRef} className="section-shell relative overflow-hidden bg-muted/45">
       <div className="container-max section-padding">
-        <div className="text-center mb-16">
-          <p className="text-xl sm:text-xl font-bold mb-1">成果物</p>
-          <h2 ref={titleRef} className="text-3xl sm:text-4xl font-bold mb-4">
+        <div className="mb-14 text-center sm:mb-16">
+          <p className="eyebrow">Selected work</p>
+          <h2 ref={titleRef} className="mb-5 text-4xl font-black tracking-tight sm:text-6xl">
             Featured <span className="gradient-text">Projects</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-balance">
@@ -131,7 +131,7 @@ export function WorkSection() {
           </p>
         </div>
 
-        <div ref={cardsRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div ref={cardsRef} className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
@@ -176,7 +176,7 @@ function ProjectCard({ project }: { project: Project }) {
   return (
     <Card
       ref={cardRef}
-      className={`group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 ${
+      className={`soft-card group overflow-hidden rounded-[1.75rem] transition-all duration-300 hover:shadow-[0_25px_60px_rgba(31,78,51,.15)] ${
         project.featured ? "md:col-span-2 lg:col-span-1" : ""
       }`}
     >
@@ -184,7 +184,7 @@ function ProjectCard({ project }: { project: Project }) {
         <img
           src={project.image?.url || "/placeholder.svg"}
           alt={project.image?.alt || project.title}
-          className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+          className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -210,7 +210,7 @@ function ProjectCard({ project }: { project: Project }) {
         )}
       </div>
 
-      <CardContent className="p-6">
+      <CardContent className="p-7">
         <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">{project.title}</h3>
         <p className="text-muted-foreground mb-4 text-sm leading-relaxed">{project.description}</p>
         <div className="flex flex-wrap gap-2">
