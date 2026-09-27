@@ -1,3 +1,4 @@
+import "./portfolio.css"
 import { HeroSection } from "@/components/hero-section"
 import { WorkSection } from "@/components/work-section"
 import { AboutSection } from "@/components/about-section"
@@ -7,7 +8,7 @@ import { Navigation } from "@/components/navigation"
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="portfolio-page min-h-screen bg-background">
       <Navigation />
       <HeroSection />
       <WorkSection />

@@ -112,19 +112,21 @@ export function AboutSection() {
   useEffect(() => {
     if (loading) return
 
-    const ctx = gsap.context(() => {
+    const motion = gsap.matchMedia()
+    motion.add("(prefers-reduced-motion: no-preference)", () => {
       // Animate section title
       gsap.fromTo(
         titleRef.current,
-        { opacity: 0, y: 50 },
+        { opacity: 0, y: 24 },
         {
           opacity: 1,
           y: 0,
-          duration: 1,
+          duration: 0.7,
           ease: "power2.out",
           scrollTrigger: {
             trigger: titleRef.current,
-            start: "top 80%",
+            start: "top 92%",
+            once: true,
           },
         },
       )
@@ -135,7 +137,7 @@ export function AboutSection() {
         if (section) {
           gsap.fromTo(
             section,
-            { opacity: 0, y: 50 },
+            { opacity: 0, y: 24 },
             {
               opacity: 1,
               y: 0,
@@ -144,7 +146,8 @@ export function AboutSection() {
               delay: index * 0.2,
               scrollTrigger: {
                 trigger: section,
-                start: "top 80%",
+                start: "top 92%",
+            once: true,
               },
             },
           )
@@ -152,7 +155,8 @@ export function AboutSection() {
       })
     }, sectionRef)
 
-    return () => ctx.revert()
+    ScrollTrigger.refresh()
+    return () => motion.revert()
   }, [loading])
 
 
@@ -164,7 +168,7 @@ export function AboutSection() {
           <div className="text-center mb-16">
             <div className="animate-pulse">
               <div className="h-8 bg-muted rounded w-48 mx-auto mb-4" />
-              <div className="h-4 bg-muted rounded w-96 mx-auto" />
+              <div className="h-4 bg-muted rounded w-full max-w-96 mx-auto" />
             </div>
           </div>
         </div>
@@ -185,14 +189,14 @@ export function AboutSection() {
         <div className="grid gap-7 lg:grid-cols-[.8fr_1.2fr]">
           {/* Personal Story */}
           <div ref={contentRef} className="lg:col-span-1">
-            <Card className="soft-card h-full rounded-[2rem]">
+            <Card className="soft-card h-full rounded-lg">
               <CardContent className="p-8">
                 <Image 
                 src={profile.profileImage.url} 
                 alt="{profile.profileImage.alt}"
                 width={150}
                 height={150}
-                className="mx-auto mb-5 h-36 w-36 rounded-[2rem] object-cover ring-8 ring-secondary/40"
+                className="mx-auto mb-5 h-36 w-36 rounded-lg object-cover ring-1 ring-border"
                 />
                 <h3 className="text-[14px] text-center font-semibold">Yuta Hamasaki</h3>
                 <h3 className="text-[14px] text-center font-semibold mb-4">濱﨑雄太</h3>
@@ -215,7 +219,7 @@ export function AboutSection() {
             </h3>
             <div className="space-y-6">
               {education.map((edu) => (
-                <Card key={edu.id} className="soft-card rounded-[2rem]">
+                <Card key={edu.id} className="soft-card rounded-lg">
                   <CardContent className="p-7 sm:p-8">
                     <div className="flex items-start justify-between mb-2">
                       <h4 className="font-semibold text-[14px]">{edu.degree}</h4>

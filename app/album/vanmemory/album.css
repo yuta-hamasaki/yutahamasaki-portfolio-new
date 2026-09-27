@@ -1,64 +1,64 @@
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.memory-album {
+  --album-ink: #424b3b;
+  --album-muted: #727465;
+  min-height: 100svh;
+  overflow: hidden;
+  padding: 28px clamp(20px, 5vw, 72px) 24px;
+  color: var(--album-ink);
+  color-scheme: light;
+  background-color: #faf6ed;
+  background-image: radial-gradient(#b8ad952e .8px, transparent .8px);
+  background-size: 7px 7px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.memory-album button { cursor: pointer; }
+.memory-album :is(button, a):focus-visible { outline: 3px solid #617a4e; outline-offset: 6px; }
+.memory-album ::selection { background: #edc4cc; color: #424b3b; }
+.album-nav { max-width: 1200px; margin: auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.album-back { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; }
+.album-back:hover { text-decoration: underline; text-underline-offset: 4px; }
+.album-volume { font-size: 10px; letter-spacing: .18em; color: var(--album-muted); }
+.album-header { text-align: center; margin: 52px auto 0; }
+.album-location { display: inline-flex; align-items: center; gap: 6px; background: #e5ebda; padding: 7px 13px; border-radius: 30px; font-size: 11px; letter-spacing: .05em; }
+.album-header h1 { position: relative; width: fit-content; margin: 18px auto; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(42px, 6vw, 72px); line-height: 1.06; letter-spacing: -.045em; font-weight: 400; }
+.album-header h1 > span { color: #a45b6a; font-style: italic; }
+.album-sparkle { position: absolute; top: 9px; right: -45px; width: 30px; height: 30px; color: #ac8544; transform: rotate(12deg); }
+.album-header p { font-size: 13px; letter-spacing: .08em; color: var(--album-muted); }
+.album-note { display: block; margin-top: 10px; font: italic 14px Georgia, serif; color: #8a7568; }
+.album-viewer { max-width: 680px; margin: 0 auto; text-align: center; }
+.album-photo-stage { position: relative; width: min(100% - 36px, 350px); margin: 52px auto 0; isolation: isolate; }
+.album-photo-stage::before, .album-photo-stage::after { content: ''; position: absolute; inset: 0; border: 1px solid #ded7c9; background: #f4ecde; box-shadow: 0 5px 14px #5648300c; z-index: -1; transform: rotate(-6deg); }
+.album-photo-stage::after { transform: rotate(5deg); background: #e4e9d9; }
+.album-polaroid { display: block; position: relative; width: 100%; padding: 13px 13px 0; border: 1px solid #e9e2d5; background: #fffdf8; box-shadow: 0 12px 32px #56483016; transform: rotate(-2deg); transition: transform .25s ease; }
+.album-polaroid:hover { transform: rotate(0); }
+.album-tape { position: absolute; width: 108px; height: 30px; top: -15px; left: calc(50% - 54px); z-index: 2; transform: rotate(4deg); background: repeating-linear-gradient(90deg, #e8bac3bd 0 8px, #efcbd2bd 8px 16px); clip-path: polygon(3% 0, 98% 3%, 96% 25%, 100% 50%, 97% 75%, 100% 100%, 0 97%, 3% 70%, 0 45%); }
+.album-photo-window { display: grid; aspect-ratio: 4 / 5; overflow: hidden; background: #eee9de; place-items: center; }
+.album-photo-window img { display: block; width: 100%; height: 100%; object-fit: cover; animation: memory-appear .35s ease; }
+.album-photo-error { padding: 24px; font-size: 14px; line-height: 1.8; }
+.album-photo-caption { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 20px 3px; font: italic 17px Georgia, serif; }
+.album-photo-caption > span:last-child { color: #a45b6a; font-size: 14px; }
+.album-sticker { position: absolute; right: -68px; top: 36px; z-index: 3; display: grid; place-content: center; width: 92px; height: 92px; background: #ecdca9; border: 1px dashed #b5a16d; border-radius: 50%; transform: rotate(12deg); font: italic 17px/1.2 Georgia, serif; pointer-events: none; }
+.album-side-note { position: absolute; left: -134px; bottom: 40px; font: italic 18px Georgia, serif; transform: rotate(-12deg); color: #8a7568; pointer-events: none; }
+.album-tap-hint { margin: 34px 0 17px; color: var(--album-muted); font-size: 11px; letter-spacing: .08em; }
+.album-controls { display: flex; justify-content: center; align-items: center; gap: 25px; }
+.album-arrow { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid #d6d9cc; border-radius: 50%; background: #e8eddf; transition: background .2s; }
+.album-arrow:hover { background: #d6dfc8; }
+.album-counter { display: flex; gap: 13px; font: 12px var(--font-geist-mono), monospace; color: var(--album-muted); }
+.album-counter strong { color: var(--album-ink); }
+.album-counter > span { color: #b7b2a6; }
+.album-restart { display: inline-flex; align-items: center; gap: 6px; margin-top: 17px; font-size: 10px; color: var(--album-muted); }
+.album-restart:hover { color: var(--album-ink); }
+.album-footer { display: flex; justify-content: center; align-items: center; gap: 7px; margin-top: 45px; font: italic 12px Georgia, serif; color: #927568; }
+.album-empty { text-align: center; padding: 60px 0; }
+@keyframes memory-appear { from { opacity: .4; } to { opacity: 1; } }
+@media (max-width: 600px) {
+  .album-volume { display: none; }
+  .album-header { margin-top: 38px; }
+  .album-sparkle { width: 22px; right: -24px; }
+  .album-sticker { right: -23px; top: 24px; width: 69px; height: 69px; font-size: 14px; }
+  .album-side-note { display: none; }
+  .album-photo-caption { font-size: 15px; }
 }
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-
-.container {
-  max-width:100%!important;
-  width:100%;
-  height:800px;
-  perspective:1000px;
-  -webkit-perspective:1000px;
-  perspective-origin:50% 50%;
-  transform-style:preserve-3d;
-  position:relative;
-  margin:0 auto;
-  overflow:hidden;
-}
-
-.photocard {
-  position:absolute;
-  top:50%;
-  left:50%;
-  backface-visibility: visible;
-  transform-style:preserve-3d;
-  transform-origin:50% 50%;
-  cursor:pointer;
-  transition:1s all ease-out;
-}
-
-.photocard-item {
-  width:290px;
-  height:440px;
-  transform-origin:50% 50%;
-  position:absolute;
-  backface-visibility: visible;
-  top:-240px;
-  left:-160px;
-  border:4px solid #eee;
-  border-radius:12px;
-  background-color:#111;
-  background-repeat:no-repeat;
-  background-size:cover;
-  background-position:center;
-  box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.7);
+@media (prefers-reduced-motion: reduce) {
+  .album-polaroid { transition: none; }
+  .album-photo-window img { animation: none; }
 }

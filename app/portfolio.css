@@ -1,0 +1,98 @@
+.portfolio-page {
+  --radius: 1.25rem;
+}
+
+.portfolio-page section[id] {
+  scroll-margin-top: 6.5rem;
+}
+
+.portfolio-page [data-slot="card"] {
+  border-radius: 1.5rem;
+  box-shadow: 0 12px 36px -24px rgb(0 0 0 / 45%);
+}
+
+.portfolio-page .eyebrow {
+  border: 1px solid rgb(182 255 0 / 18%);
+  border-radius: 999px;
+  background: rgb(182 255 0 / 4%);
+  padding: .5rem .875rem;
+  letter-spacing: .14em;
+}
+
+.portfolio-page #hero a:not([aria-label="Scroll to projects"]),
+.portfolio-page nav a[href="#contact"],
+.portfolio-page [data-slot="badge"],
+.portfolio-page .progress-bar {
+  border-radius: 999px;
+}
+
+.portfolio-page #hero .hero-portrait {
+  border-radius: 2rem;
+}
+
+.portfolio-page input,
+.portfolio-page textarea {
+  border-radius: .875rem;
+}
+
+.portfolio-page input {
+  min-height: 2.75rem;
+}
+
+.portfolio-page nav > div[data-scrolled] {
+  border: 1px solid transparent;
+  border-radius: 1.5rem;
+}
+
+.portfolio-page nav > div[data-scrolled="true"] {
+  border-color: var(--border);
+  box-shadow: 0 12px 40px -16px rgb(0 0 0 / 60%);
+}
+
+.portfolio-page .scroll-progress {
+  position: fixed;
+  inset: 0 0 auto;
+  height: 2px;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+}
+
+@keyframes portfolio-scroll-hint {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .portfolio-page a[aria-label="Scroll to projects"] svg {
+    animation: portfolio-scroll-hint 1.8s ease-in-out 3;
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .portfolio-page .project-card {
+    transition: translate .3s ease, border-color .3s ease, box-shadow .3s ease;
+  }
+
+  .portfolio-page .project-card:hover {
+    translate: 0 -5px;
+    box-shadow: 0 20px 44px -24px rgb(0 0 0 / 70%);
+  }
+
+  .portfolio-page #hero a svg {
+    transition: transform .25s ease;
+  }
+
+  .portfolio-page #hero a:hover svg {
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:has(.portfolio-page) { scroll-behavior: auto !important; }
+  .portfolio-page *, .portfolio-page *::before, .portfolio-page *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
