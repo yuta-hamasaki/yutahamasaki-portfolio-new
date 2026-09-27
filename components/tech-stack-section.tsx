@@ -128,14 +128,14 @@ export function TechStackSection() {
   }, [])
 
   return (
-    <section id="tech" ref={sectionRef} className="py-20 bg-muted/30">
+    <section id="tech" ref={sectionRef} className="section-shell bg-[#153c28] text-white">
       <div className="container-max section-padding">
-        <div className="text-center mb-16">
-          <p className="text-xl sm:text-xl font-bold mb-1">技術スタック</p>
-          <h2 ref={titleRef} className="text-3xl sm:text-4xl font-bold mb-4">
-            Tech <span className="gradient-text">Stack</span>
+        <div className="mb-14 text-center sm:mb-16">
+          <p className="mb-4 inline-flex rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[.18em] text-secondary">My toolkit</p>
+          <h2 ref={titleRef} className="mb-5 text-4xl font-black tracking-tight sm:text-6xl">
+            Tech <span className="text-secondary">Stack</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-balance">
+          <p className="mx-auto max-w-2xl text-lg text-white/65 text-balance">
             {t.tech.subtitle}
           </p>
         </div>
@@ -171,7 +171,7 @@ export function TechStackSection() {
 
 function TechCategory({ category }: { category: (typeof techCategories)[0] }) {
   return (
-    <Card className="overflow-hidden">
+    <Card className="overflow-hidden rounded-[1.75rem] border-white/10 bg-white/8 text-white shadow-none backdrop-blur-sm">
       <CardContent className="p-6">
         <div className="flex items-center gap-3 mb-6">
           <span className="text-2xl">{category.icon}</span>
@@ -182,9 +182,9 @@ function TechCategory({ category }: { category: (typeof techCategories)[0] }) {
             <div key={tech.name} className="space-y-2">
               <div className="flex items-center justify-between">
                 <span className="font-medium">{tech.name}</span>
-                <span className="text-sm text-muted-foreground">{tech.level}%</span>
+                <span className="text-sm text-white/55">{tech.level}%</span>
               </div>
-              <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
+              <div className="h-2 w-full overflow-hidden rounded-full bg-white/10">
                 <div
                   className={`progress-bar h-full ${tech.color} rounded-full transition-all duration-300`}
                   data-width={tech.level}
