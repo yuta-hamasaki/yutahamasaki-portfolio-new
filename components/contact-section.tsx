@@ -188,7 +188,7 @@ export function ContactSection() {
 
         <div className="grid gap-7 lg:grid-cols-[1.1fr_.9fr]">
           {/* Contact Form */}
-          <Card ref={formRef} className="soft-card rounded-lg">
+          <Card ref={formRef} className="soft-card rounded-[2rem]">
             <CardContent className="p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">

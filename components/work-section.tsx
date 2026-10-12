@@ -129,7 +129,7 @@ export function WorkSection() {
           </p>
         </div>
 
-        <div ref={cardsRef} className="grid items-start gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div ref={cardsRef} className="grid auto-rows-fr gap-6 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
@@ -166,9 +166,8 @@ function ProjectCard({ project }: { project: Project }) {
 
   return (
     <Card
-      className={`soft-card project-card group overflow-hidden rounded-lg transition-colors duration-300 hover:border-primary/40 ${
-        project.featured ? "md:col-span-2 lg:col-span-1" : ""
-      }`}
+      ref={cardRef}
+      className="soft-card group h-full min-h-[30rem] overflow-hidden rounded-[1.75rem] py-0 transition-all duration-300 hover:shadow-[0_25px_60px_rgba(31,78,51,.15)]"
     >
       <div className="relative overflow-hidden">
         <img
@@ -200,33 +199,10 @@ function ProjectCard({ project }: { project: Project }) {
         )}
       </div>
 
-      <CardContent className="p-7">
-        <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">{project.title}</h3>
-        <div className="mb-4">
-          <p
-            id={descriptionId}
-            ref={descriptionRef}
-            className={`text-muted-foreground whitespace-pre-line break-words text-sm leading-relaxed ${expanded ? "" : "line-clamp-3"}`}
-          >
-            {project.description}
-          </p>
-          {canExpand && (
-            <button
-              type="button"
-              aria-expanded={expanded}
-              aria-controls={descriptionId}
-              onClick={() => setExpanded((value) => !value)}
-              className="mt-2 inline-flex min-h-9 items-center gap-1 rounded-sm text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-            >
-              {expanded ? "Read less" : "Read more"}
-              <ChevronDown
-                aria-hidden="true"
-                className={`h-4 w-4 transition-transform motion-reduce:transition-none ${expanded ? "rotate-180" : ""}`}
-              />
-            </button>
-          )}
-        </div>
-        <div className="flex flex-wrap gap-2">
+      <CardContent className="flex flex-1 flex-col p-7">
+        <h3 className="mb-2 line-clamp-2 min-h-[3.5rem] text-xl font-semibold transition-colors group-hover:text-primary">{project.title}</h3>
+        <p className="mb-4 line-clamp-4 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
+        <div className="mt-auto flex flex-wrap gap-2">
           {project.technologies.map((tech, index) => (
             <Badge key={index} variant="outline" className="text-xs">
               {tech.technologies}

@@ -189,14 +189,14 @@ export function AboutSection() {
         <div className="grid gap-7 lg:grid-cols-[.8fr_1.2fr]">
           {/* Personal Story */}
           <div ref={contentRef} className="lg:col-span-1">
-            <Card className="soft-card h-full rounded-lg">
+            <Card className="soft-card h-full rounded-[2rem]">
               <CardContent className="p-8">
                 <Image 
                 src={profile.profileImage.url} 
                 alt="{profile.profileImage.alt}"
                 width={150}
                 height={150}
-                className="mx-auto mb-5 h-36 w-36 rounded-lg object-cover ring-1 ring-border"
+                className="mx-auto mb-5 h-36 w-36 rounded-[2rem] object-cover ring-8 ring-secondary/40"
                 />
                 <h3 className="text-[14px] text-center font-semibold">Yuta Hamasaki</h3>
                 <h3 className="text-[14px] text-center font-semibold mb-4">濱﨑雄太</h3>
@@ -219,7 +219,7 @@ export function AboutSection() {
             </h3>
             <div className="space-y-6">
               {education.map((edu) => (
-                <Card key={edu.id} className="soft-card rounded-lg">
+                <Card key={edu.id} className="soft-card rounded-[2rem]">
                   <CardContent className="p-7 sm:p-8">
                     <div className="flex items-start justify-between mb-2">
                       <h4 className="font-semibold text-[14px]">{edu.degree}</h4>
