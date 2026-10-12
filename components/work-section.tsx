@@ -1,10 +1,10 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useId, useRef, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ExternalLink, Github } from "lucide-react"
+import { ChevronDown, ExternalLink, Github } from "lucide-react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { getProjects, type Project } from "@/lib/microcms"
@@ -62,19 +62,21 @@ export function WorkSection() {
   useEffect(() => {
     if (loading) return
 
-    const ctx = gsap.context(() => {
+    const motion = gsap.matchMedia()
+    motion.add("(prefers-reduced-motion: no-preference)", () => {
       // Animate section title
       gsap.fromTo(
         titleRef.current,
-        { opacity: 0, y: 50 },
+        { opacity: 0, y: 24 },
         {
           opacity: 1,
           y: 0,
-          duration: 1,
+          duration: 0.7,
           ease: "power2.out",
           scrollTrigger: {
             trigger: titleRef.current,
-            start: "top 80%",
+            start: "top 92%",
+            once: true,
           },
         },
       )
@@ -82,25 +84,21 @@ export function WorkSection() {
       // Animate project cards
       const cards = cardsRef.current?.children
       if (cards) {
-        gsap.fromTo(
-          cards,
-          { opacity: 0, y: 50 },
-          {
+        Array.from(cards).forEach((card, index) => {
+          gsap.fromTo(card, { opacity: 0, y: 24 }, {
             opacity: 1,
             y: 0,
-            duration: 0.8,
+            duration: 0.7,
+            delay: (index % 2) * 0.08,
             ease: "power2.out",
-            stagger: 0.2,
-            scrollTrigger: {
-              trigger: cardsRef.current,
-              start: "top 80%",
-            },
-          },
-        )
+            scrollTrigger: { trigger: card, start: "top 92%", once: true },
+          })
+        })
       }
     }, sectionRef)
 
-    return () => ctx.revert()
+    ScrollTrigger.refresh()
+    return () => motion.revert()
   }, [loading])
 
   if (loading) {
@@ -110,7 +108,7 @@ export function WorkSection() {
           <div className="text-center">
             <div className="animate-pulse">
               <div className="h-8 bg-muted rounded w-64 mx-auto mb-4" />
-              <div className="h-4 bg-muted rounded w-96 mx-auto" />
+              <div className="h-4 bg-muted rounded w-full max-w-96 mx-auto" />
             </div>
           </div>
         </div>
@@ -142,36 +140,29 @@ export function WorkSection() {
 }
 
 function ProjectCard({ project }: { project: Project }) {
-  const cardRef = useRef<HTMLDivElement>(null)
+  const descriptionId = useId()
+  const descriptionRef = useRef<HTMLParagraphElement>(null)
+  const [expanded, setExpanded] = useState(false)
+  const [canExpand, setCanExpand] = useState(false)
 
   useEffect(() => {
-    const card = cardRef.current
-    if (!card) return
+    const description = descriptionRef.current
+    if (!description) return
 
-    const handleMouseEnter = () => {
-      gsap.to(card, {
-        y: -10,
-        duration: 0.3,
-        ease: "power2.out",
-      })
+    const measureDescription = () => {
+      const lineHeight = Number.parseFloat(getComputedStyle(description).lineHeight)
+      setCanExpand(description.scrollHeight > lineHeight * 3 + 1)
     }
 
-    const handleMouseLeave = () => {
-      gsap.to(card, {
-        y: 0,
-        duration: 0.3,
-        ease: "power2.out",
-      })
-    }
+    measureDescription()
+    const observer = new ResizeObserver(measureDescription)
+    observer.observe(description)
+    return () => observer.disconnect()
+  }, [project.description])
 
-    card.addEventListener("mouseenter", handleMouseEnter)
-    card.addEventListener("mouseleave", handleMouseLeave)
-
-    return () => {
-      card.removeEventListener("mouseenter", handleMouseEnter)
-      card.removeEventListener("mouseleave", handleMouseLeave)
-    }
-  }, [])
+  useEffect(() => {
+    ScrollTrigger.refresh()
+  }, [expanded, canExpand])
 
   return (
     <Card

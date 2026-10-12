@@ -112,19 +112,21 @@ export function AboutSection() {
   useEffect(() => {
     if (loading) return
 
-    const ctx = gsap.context(() => {
+    const motion = gsap.matchMedia()
+    motion.add("(prefers-reduced-motion: no-preference)", () => {
       // Animate section title
       gsap.fromTo(
         titleRef.current,
-        { opacity: 0, y: 50 },
+        { opacity: 0, y: 24 },
         {
           opacity: 1,
           y: 0,
-          duration: 1,
+          duration: 0.7,
           ease: "power2.out",
           scrollTrigger: {
             trigger: titleRef.current,
-            start: "top 80%",
+            start: "top 92%",
+            once: true,
           },
         },
       )
@@ -135,7 +137,7 @@ export function AboutSection() {
         if (section) {
           gsap.fromTo(
             section,
-            { opacity: 0, y: 50 },
+            { opacity: 0, y: 24 },
             {
               opacity: 1,
               y: 0,
@@ -144,7 +146,8 @@ export function AboutSection() {
               delay: index * 0.2,
               scrollTrigger: {
                 trigger: section,
-                start: "top 80%",
+                start: "top 92%",
+            once: true,
               },
             },
           )
@@ -152,7 +155,8 @@ export function AboutSection() {
       })
     }, sectionRef)
 
-    return () => ctx.revert()
+    ScrollTrigger.refresh()
+    return () => motion.revert()
   }, [loading])
 
 
@@ -164,7 +168,7 @@ export function AboutSection() {
           <div className="text-center mb-16">
             <div className="animate-pulse">
               <div className="h-8 bg-muted rounded w-48 mx-auto mb-4" />
-              <div className="h-4 bg-muted rounded w-96 mx-auto" />
+              <div className="h-4 bg-muted rounded w-full max-w-96 mx-auto" />
             </div>
           </div>
         </div>
