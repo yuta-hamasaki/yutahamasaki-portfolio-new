@@ -25,7 +25,6 @@ export function HeroSection() {
       <div className="absolute -left-28 top-28 h-80 w-80 rounded-full bg-secondary/35 blur-3xl" />
       <div className="container-max section-padding relative grid min-h-[calc(100vh-8rem)] items-center gap-14 pb-20 lg:grid-cols-[1.08fr_.92fr]">
         <div ref={content} className="relative z-10 order-2 text-center lg:order-1 lg:text-left">
-          <div className="eyebrow"><span className="h-2 w-2 animate-pulse rounded-full bg-primary" />Available for new opportunities</div>
           <h1 className="text-[clamp(3.2rem,8vw,7.4rem)] font-black leading-[.88] tracking-[-.07em] text-foreground">YUTA<br /><span className="gradient-text">HAMASAKI</span><span className="text-accent">.</span></h1>
           <p className="mx-auto mt-7 max-w-xl text-base leading-8 text-muted-foreground sm:text-lg lg:mx-0">{t.hero.subtitle}</p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
