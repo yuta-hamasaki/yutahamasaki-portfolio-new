@@ -4,7 +4,7 @@ import * as React from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ChevronDown, ExternalLink, Github } from "lucide-react"
+import { ExternalLink, Github } from "lucide-react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { getProjects, type Project } from "@/lib/microcms"
@@ -154,20 +154,21 @@ function ProjectCard({ project }: { project: Project }) {
       })
     }
 
-    const measureDescription = () => {
-      const lineHeight = Number.parseFloat(getComputedStyle(description).lineHeight)
-      setCanExpand(description.scrollHeight > lineHeight * 3 + 1)
+    const handleMouseLeave = () => {
+      gsap.to(card, {
+        y: 0,
+        duration: 0.3,
+        ease: "power2.out",
+      })
     }
 
-    measureDescription()
-    const observer = new ResizeObserver(measureDescription)
-    observer.observe(description)
-    return () => observer.disconnect()
-  }, [project.description])
-
-  useEffect(() => {
-    ScrollTrigger.refresh()
-  }, [expanded, canExpand])
+    card.addEventListener("mouseenter", handleMouseEnter)
+    card.addEventListener("mouseleave", handleMouseLeave)
+    return () => {
+      card.removeEventListener("mouseenter", handleMouseEnter)
+      card.removeEventListener("mouseleave", handleMouseLeave)
+    }
+  }, [])
 
   return (
     <Card

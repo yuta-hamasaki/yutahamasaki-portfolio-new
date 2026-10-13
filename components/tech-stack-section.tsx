@@ -117,7 +117,7 @@ export function TechStackSection() {
       })
     }, sectionRef)
 
-    return () => motion.revert()
+    return () => ctx.revert()
   }, [])
 
   return (

@@ -92,7 +92,7 @@ export function ContactSection() {
       })
     }, sectionRef)
 
-    return () => motion.revert()
+    return () => ctx.revert()
   }, [])
 
   const validateForm = (): boolean => {

@@ -6,7 +6,6 @@ import { useLanguage } from "@/contexts/language-context"
 import { ArrowUpRight, Menu, X } from "lucide-react"
 
 export function Navigation() {
-  const progressRef = useRef<HTMLDivElement>(null)
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const { t } = useLanguage()
