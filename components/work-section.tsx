@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useId, useRef, useState } from "react"
+import * as React from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -35,14 +35,14 @@ const fallbackProjects: Project[] = [
 ]
 
 export function WorkSection() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const titleRef = useRef<HTMLHeadingElement>(null)
-  const cardsRef = useRef<HTMLDivElement>(null)
-  const [projects, setProjects] = useState<Project[]>(fallbackProjects)
-  const [loading, setLoading] = useState(true)
+  const sectionRef = React.useRef<HTMLElement>(null)
+  const titleRef = React.useRef<HTMLHeadingElement>(null)
+  const cardsRef = React.useRef<HTMLDivElement>(null)
+  const [projects, setProjects] = React.useState<Project[]>(fallbackProjects)
+  const [loading, setLoading] = React.useState(true)
   const { t } = useLanguage()
 
-  useEffect(() => {
+  React.useEffect(() => {
     const fetchProjects = async () => {
       try {
         const fetchedProjects = await getProjects(6)
@@ -59,7 +59,7 @@ export function WorkSection() {
     fetchProjects()
   }, [])
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (loading) return
 
     const motion = gsap.matchMedia()
@@ -140,14 +140,19 @@ export function WorkSection() {
 }
 
 function ProjectCard({ project }: { project: Project }) {
-  const descriptionId = useId()
-  const descriptionRef = useRef<HTMLParagraphElement>(null)
-  const [expanded, setExpanded] = useState(false)
-  const [canExpand, setCanExpand] = useState(false)
+  const cardRef = React.useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const description = descriptionRef.current
-    if (!description) return
+  React.useEffect(() => {
+    const card = cardRef.current
+    if (!card) return
+
+    const handleMouseEnter = () => {
+      gsap.to(card, {
+        y: -10,
+        duration: 0.3,
+        ease: "power2.out",
+      })
+    }
 
     const measureDescription = () => {
       const lineHeight = Number.parseFloat(getComputedStyle(description).lineHeight)

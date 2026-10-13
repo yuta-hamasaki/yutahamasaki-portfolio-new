@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import * as React from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { gsap } from "gsap"
@@ -57,14 +57,13 @@ const techCategories = [
 ]
 
 export function TechStackSection() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const titleRef = useRef<HTMLHeadingElement>(null)
-  const categoriesRef = useRef<HTMLDivElement>(null)
+  const sectionRef = React.useRef<HTMLElement>(null)
+  const titleRef = React.useRef<HTMLHeadingElement>(null)
+  const categoriesRef = React.useRef<HTMLDivElement>(null)
   const { t } = useLanguage()
 
-  useEffect(() => {
-    const motion = gsap.matchMedia()
-    motion.add("(prefers-reduced-motion: no-preference)", () => {
+  React.useEffect(() => {
+    const ctx = gsap.context(() => {
       // Animate section title
       gsap.fromTo(
         titleRef.current,

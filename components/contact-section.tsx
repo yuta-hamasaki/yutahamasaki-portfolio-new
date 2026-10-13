@@ -1,8 +1,6 @@
 "use client"
 
-import type React from "react"
-
-import { useEffect, useRef, useState } from "react"
+import * as React from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -31,29 +29,28 @@ interface FormErrors {
 }
 
 export function ContactSection() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const titleRef = useRef<HTMLHeadingElement>(null)
-  const formRef = useRef<HTMLDivElement>(null)
-  const contactInfoRef = useRef<HTMLDivElement>(null)
+  const sectionRef = React.useRef<HTMLElement>(null)
+  const titleRef = React.useRef<HTMLHeadingElement>(null)
+  const formRef = React.useRef<HTMLDivElement>(null)
+  const contactInfoRef = React.useRef<HTMLDivElement>(null)
   const { t } = useLanguage()
 
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = React.useState<FormData>({
     name: "",
     email: "",
     message: "",
   })
-  const [errors, setErrors] = useState<FormErrors>({})
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+  const [errors, setErrors] = React.useState<FormErrors>({})
+  const [isSubmitting, setIsSubmitting] = React.useState(false)
+  const [submitStatus, setSubmitStatus] = React.useState<"idle" | "success" | "error">("idle")
 
-  useEffect(() => {
+  React.useEffect(() => {
     // Initialize EmailJS (you'll need to replace these with your actual EmailJS credentials)
     emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "your_public_key")
   }, [])
 
-  useEffect(() => {
-    const motion = gsap.matchMedia()
-    motion.add("(prefers-reduced-motion: no-preference)", () => {
+  React.useEffect(() => {
+    const ctx = gsap.context(() => {
       // Animate section title
       gsap.fromTo(
         titleRef.current,

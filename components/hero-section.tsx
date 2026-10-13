@@ -1,17 +1,17 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import * as React from "react"
 import { ArrowDown, ArrowUpRight, Github, Linkedin, Mail, Sparkles } from "lucide-react"
 import { gsap } from "gsap"
 import { useLanguage } from "@/contexts/language-context"
 
 export function HeroSection() {
-  const root = useRef<HTMLElement>(null)
-  const content = useRef<HTMLDivElement>(null)
-  const portrait = useRef<HTMLDivElement>(null)
+  const root = React.useRef<HTMLElement>(null)
+  const content = React.useRef<HTMLDivElement>(null)
+  const portrait = React.useRef<HTMLDivElement>(null)
   const { t } = useLanguage()
 
-  useEffect(() => {
+  React.useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(content.current?.children || [], { opacity: 0, y: 28, duration: .8, stagger: .12, ease: "power3.out" })
       gsap.from(portrait.current, { opacity: 0, scale: .92, rotate: 3, duration: 1.1, ease: "back.out(1.4)", delay: .2 })

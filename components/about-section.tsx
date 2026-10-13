@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import * as React from "react"
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -72,18 +72,18 @@ const fallbackEducation: Education[] = [
 // ]
 
 export function AboutSection() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const titleRef = useRef<HTMLHeadingElement>(null)
-  const contentRef = useRef<HTMLDivElement>(null)
-  const educationRef = useRef<HTMLDivElement>(null)
-  const experienceRef = useRef<HTMLDivElement>(null)
+  const sectionRef = React.useRef<HTMLElement>(null)
+  const titleRef = React.useRef<HTMLHeadingElement>(null)
+  const contentRef = React.useRef<HTMLDivElement>(null)
+  const educationRef = React.useRef<HTMLDivElement>(null)
+  const experienceRef = React.useRef<HTMLDivElement>(null)
 
-  const [profile, setProfile] = useState<Profile>(fallbackProfile)
-  const [education, setEducation] = useState<Education[]>(fallbackEducation)
-  // const [experience, setExperience] = useState<Experience[]>(fallbackExperience)
-  const [loading, setLoading] = useState(true)
+  const [profile, setProfile] = React.useState<Profile>(fallbackProfile)
+  const [education, setEducation] = React.useState<Education[]>(fallbackEducation)
+  // const [experience, setExperience] = React.useState<Experience[]>(fallbackExperience)
+  const [loading, setLoading] = React.useState(true)
 
-  useEffect(() => {
+  React.useEffect(() => {
     const fetchData = async () => {
       try {
         const [
@@ -109,7 +109,7 @@ export function AboutSection() {
     fetchData()
   }, [])
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (loading) return
 
     const motion = gsap.matchMedia()
