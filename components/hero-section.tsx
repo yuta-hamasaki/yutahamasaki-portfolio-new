@@ -33,7 +33,7 @@ export function HeroSection() {
           </div>
           <div className="mt-9 flex items-center justify-center gap-3 lg:justify-start">
             <span className="mr-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">Connect</span>
-            {[{ href:"https://github.com/yuta-hamasaki", label:"GitHub", icon:Github },{ href:"https://www.linkedin.com/in/yuta-hamasaki-623400215/", label:"LinkedIn", icon:Linkedin },{ href:"mailto:yutahamasaki.official@gmail.com", label:"Email", icon:Mail }].map(({href,label,icon:Icon}) => <a key={label} href={href} aria-label={label} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="grid h-11 w-11 place-items-center rounded-full border bg-white text-foreground shadow-sm transition hover:-translate-y-1 hover:border-primary hover:text-primary"><Icon className="h-4.5 w-4.5" /></a>)}
+            {[{ href:"https://github.com/yuta-hamasaki", label:"GitHub", icon:Github },{ href:"https://www.linkedin.com/in/yuta-hamasaki-623400215/", label:"LinkedIn", icon:Linkedin },{ href:"mailto:yutahamasaki.official@gmail.com", label:"Email", icon:Mail }].map(({href,label,icon:Icon}) => <a key={label} href={href} aria-label={label} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="grid h-11 w-11 place-items-center rounded-lg border border-border bg-card text-primary transition hover:-translate-y-0.5 hover:border-primary hover:bg-primary hover:text-primary-foreground"><Icon className="h-4.5 w-4.5" /></a>)}
           </div>
         </div>
 

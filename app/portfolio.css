@@ -7,8 +7,8 @@
 }
 
 .portfolio-page [data-slot="card"] {
-  border-radius: 1.5rem;
-  box-shadow: 0 12px 36px -24px rgb(0 0 0 / 45%);
+  border-radius: .5rem;
+  box-shadow: none;
 }
 
 .portfolio-page .eyebrow {

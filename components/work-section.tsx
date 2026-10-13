@@ -4,7 +4,7 @@ import * as React from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ExternalLink, Github } from "lucide-react"
+import { ArrowUpRight, ExternalLink, Github, X } from "lucide-react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { getProjects, type Project } from "@/lib/microcms"
@@ -140,82 +140,71 @@ export function WorkSection() {
 }
 
 function ProjectCard({ project }: { project: Project }) {
-  const cardRef = React.useRef<HTMLDivElement>(null)
-
-  React.useEffect(() => {
-    const card = cardRef.current
-    if (!card) return
-
-    const handleMouseEnter = () => {
-      gsap.to(card, {
-        y: -10,
-        duration: 0.3,
-        ease: "power2.out",
-      })
-    }
-
-    const handleMouseLeave = () => {
-      gsap.to(card, {
-        y: 0,
-        duration: 0.3,
-        ease: "power2.out",
-      })
-    }
-
-    card.addEventListener("mouseenter", handleMouseEnter)
-    card.addEventListener("mouseleave", handleMouseLeave)
-    return () => {
-      card.removeEventListener("mouseenter", handleMouseEnter)
-      card.removeEventListener("mouseleave", handleMouseLeave)
-    }
-  }, [])
+  const dialogRef = React.useRef<HTMLDialogElement>(null)
+  const dialogTitleId = `project-dialog-${project.id}`
 
   return (
-    <Card
-      ref={cardRef}
-      className="soft-card group h-full min-h-[30rem] overflow-hidden rounded-[1.75rem] py-0 transition-all duration-300 hover:shadow-[0_25px_60px_rgba(31,78,51,.15)]"
-    >
-      <div className="relative overflow-hidden">
+    <>
+      <Card className="soft-card group h-full overflow-hidden rounded-lg border-border bg-card py-0 shadow-none">
         <img
           src={project.image?.url || "/placeholder.svg"}
           alt={project.image?.alt || project.title}
-          className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="aspect-[16/10] w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          {project.liveUrl && (
-            <Button size="sm" variant="secondary" className="h-8 w-8 p-0" asChild>
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="h-4 w-4" />
-                <span className="sr-only">View live project</span>
-              </a>
-            </Button>
-          )}
-          {project.githubUrl && (
-            <Button size="sm" variant="secondary" className="h-8 w-8 p-0" asChild>
-              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                <Github className="h-4 w-4" />
-                <span className="sr-only">View source code</span>
-              </a>
-            </Button>
-          )}
-        </div>
-        {project.featured && (
-          <Badge className="absolute top-4 left-4 bg-secondary text-secondary-foreground">Featured</Badge>
-        )}
-      </div>
+        <CardContent className="flex min-h-20 items-center justify-between gap-4 p-5">
+          <h3 className="line-clamp-2 text-base font-semibold">{project.title}</h3>
+          <Button type="button" variant="ghost" size="sm" className="shrink-0" onClick={() => dialogRef.current?.showModal()}>
+            Details <ArrowUpRight className="h-4 w-4" />
+          </Button>
+        </CardContent>
+      </Card>
 
-      <CardContent className="flex flex-1 flex-col p-7">
-        <h3 className="mb-2 line-clamp-2 min-h-[3.5rem] text-xl font-semibold transition-colors group-hover:text-primary">{project.title}</h3>
-        <p className="mb-4 line-clamp-4 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
-        <div className="mt-auto flex flex-wrap gap-2">
-          {project.technologies.map((tech, index) => (
-            <Badge key={index} variant="outline" className="text-xs">
-              {tech.technologies}
-            </Badge>
-          ))}
+      <dialog
+        ref={dialogRef}
+        aria-labelledby={dialogTitleId}
+        onClick={(event) => {
+          if (event.target === event.currentTarget) event.currentTarget.close()
+        }}
+        className="m-auto max-h-[85dvh] w-[calc(100%-2rem)] max-w-2xl overflow-y-auto rounded-lg border border-border bg-card p-0 text-card-foreground shadow-2xl backdrop:bg-black/75"
+      >
+        <div className="flex items-start justify-between gap-6 p-6 pb-4 sm:p-8 sm:pb-5">
+          <div>
+            <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-primary">Project details</p>
+            <h3 id={dialogTitleId} className="text-2xl font-bold">{project.title}</h3>
+          </div>
+          <button type="button" aria-label="Close project details" onClick={() => dialogRef.current?.close()} className="grid h-9 w-9 shrink-0 place-items-center rounded-md border border-border text-muted-foreground transition hover:bg-muted hover:text-foreground">
+            <X className="h-4 w-4" />
+          </button>
         </div>
-      </CardContent>
-    </Card>
+        {project.image?.url && <img src={project.image.url} alt={project.image.alt || project.title} className="max-h-80 w-full object-cover" />}
+        <div className="space-y-6 p-6 sm:p-8">
+          <p className="whitespace-pre-line text-sm leading-7 text-muted-foreground">{project.description}</p>
+          {project.technologies.length > 0 && (
+            <div>
+              <h4 className="mb-3 text-sm font-semibold">Technologies</h4>
+              <div className="flex flex-wrap gap-2">
+                {project.technologies.map((tech) => (
+                  <Badge key={tech.id} variant="outline" className="rounded-md">{tech.technologies}</Badge>
+                ))}
+              </div>
+            </div>
+          )}
+          {(project.liveUrl && project.liveUrl !== "#" || project.githubUrl && project.githubUrl !== "#") && (
+            <div className="flex flex-wrap gap-3">
+              {project.liveUrl && project.liveUrl !== "#" && (
+                <Button asChild>
+                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">Live project <ExternalLink className="h-4 w-4" /></a>
+                </Button>
+              )}
+              {project.githubUrl && project.githubUrl !== "#" && (
+                <Button asChild variant="outline">
+                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">Source code <Github className="h-4 w-4" /></a>
+                </Button>
+              )}
+            </div>
+          )}
+        </div>
+      </dialog>
+    </>
   )
 }
