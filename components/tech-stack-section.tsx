@@ -121,7 +121,7 @@ export function TechStackSection() {
   }, [])
 
   return (
-    <section id="tech" ref={sectionRef} className="section-shell bg-[#153c28] text-white">
+    <section id="tech" ref={sectionRef} className="section-shell bg-[#101310] text-white">
       <div className="container-max section-padding">
         <div className="mb-14 text-center sm:mb-16">
           <p className="mb-4 inline-flex rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[.18em] text-secondary">My toolkit</p>
