@@ -169,10 +169,11 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contact" ref={sectionRef} className="py-20 bg-muted/30">
-      <div className=" section-padding">
-        <div className="text-center mb-16">
-          <h2 ref={titleRef} className="text-3xl sm:text-4xl font-bold mb-4">
+    <section id="contact" ref={sectionRef} className="section-shell bg-muted/45">
+      <div className="container-max section-padding">
+        <div className="mb-14 text-center sm:mb-16">
+          <p className="eyebrow">Start a conversation</p>
+          <h2 ref={titleRef} className="mb-5 text-4xl font-black tracking-tight sm:text-6xl">
             {t.contact.title.split(" ").map((word, index) => (
               <span key={index} className={index === t.contact.title.split(" ").length - 1 ? "gradient-text" : ""}>
                 {word}{" "}
@@ -182,9 +183,9 @@ export function ContactSection() {
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-balance">{t.contact.subtitle}</p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid gap-7 lg:grid-cols-[1.1fr_.9fr]">
           {/* Contact Form */}
-          <Card ref={formRef}>
+          <Card ref={formRef} className="soft-card rounded-[2rem]">
             <CardContent className="p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
