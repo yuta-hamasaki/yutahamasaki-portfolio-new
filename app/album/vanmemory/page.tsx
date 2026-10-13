@@ -1,4 +1,5 @@
-import PhotoCard from '@/components/photo-card';
+import { PhotoCard } from '@/components/photo-card';
+import Link from 'next/link';
 
 const imageData = [
   'https://gallary-lovat.vercel.app/vanphoto/van1.JPG',
