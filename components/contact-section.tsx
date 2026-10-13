@@ -54,15 +54,16 @@ export function ContactSection() {
       // Animate section title
       gsap.fromTo(
         titleRef.current,
-        { opacity: 0, y: 50 },
+        { opacity: 0, y: 24 },
         {
           opacity: 1,
           y: 0,
-          duration: 1,
+          duration: 0.7,
           ease: "power2.out",
           scrollTrigger: {
             trigger: titleRef.current,
-            start: "top 80%",
+            start: "top 92%",
+            once: true,
           },
         },
       )
@@ -73,7 +74,7 @@ export function ContactSection() {
         if (element) {
           gsap.fromTo(
             element,
-            { opacity: 0, y: 50 },
+            { opacity: 0, y: 24 },
             {
               opacity: 1,
               y: 0,
@@ -82,7 +83,8 @@ export function ContactSection() {
               delay: index * 0.2,
               scrollTrigger: {
                 trigger: element,
-                start: "top 80%",
+                start: "top 92%",
+            once: true,
               },
             },
           )
@@ -90,7 +92,7 @@ export function ContactSection() {
       })
     }, sectionRef)
 
-    return () => ctx.revert()
+    return () => motion.revert()
   }, [])
 
   const validateForm = (): boolean => {
@@ -247,14 +249,14 @@ export function ContactSection() {
 
                 {/* Status Messages */}
                 {submitStatus === "success" && (
-                  <div className="p-4 bg-green-50 border border-green-200 rounded-md">
-                    <p className="text-sm text-green-800">{t.contact.success}</p>
+                  <div className="p-4 bg-primary/10 border border-primary/30 rounded-md">
+                    <p className="text-sm text-primary">{t.contact.success}</p>
                   </div>
                 )}
 
                 {submitStatus === "error" && (
-                  <div className="p-4 bg-red-50 border border-red-200 rounded-md">
-                    <p className="text-sm text-red-800">{t.contact.error}</p>
+                  <div className="p-4 bg-destructive/10 border border-destructive/30 rounded-md">
+                    <p className="text-sm text-destructive">{t.contact.error}</p>
                   </div>
                 )}
               </form>

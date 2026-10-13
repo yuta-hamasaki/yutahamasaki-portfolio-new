@@ -1,4 +1,7 @@
 import PhotoCard from '@/components/photo-card';
+import Link from 'next/link';
+import { ArrowLeft, Heart, MapPin, Sparkles } from 'lucide-react';
+import './album.css';
 
 const imageData = [
   'https://gallary-lovat.vercel.app/vanphoto/van1.JPG',
@@ -28,16 +31,21 @@ const imageData = [
   'https://gallary-lovat.vercel.app/vanphoto/van8.jpg'
 ];
 
-export default function page() {
+export default function VancouverAlbumPage() {
   return (
-    <>
-    <div className="w-screen h-screen p-2 flex flex-col items-center overflow-hidden">
-      <h2 className='mt-10 text-center font-bold text-3xl'>Memory In Vancouver 🇨🇦</h2>
-        <p className="mt-3 animate-bounce">
-          ↓Click the photo!
-        </p>
-      <PhotoCard imageData={imageData}></PhotoCard>
-    </div>
-    </>
+    <main className="memory-album">
+      <nav className="album-nav" aria-label="Album navigation">
+        <Link href="/" className="album-back"><ArrowLeft size={16} /> Back to portfolio</Link>
+        <span className="album-volume">TRAVEL DIARY / VOL. 01</span>
+      </nav>
+      <header className="album-header">
+        <span className="album-location"><MapPin size={14} /> Vancouver, Canada</span>
+        <h1>Little moments,<br /><span>big memories.</span><Sparkles className="album-sparkle" aria-hidden="true" /></h1>
+        <p>バンクーバーで見つけた、忘れたくない日々。</p>
+        <span className="album-note">a little collection of my Vancouver days</span>
+      </header>
+      <PhotoCard imageData={imageData} />
+      <footer className="album-footer"><Heart size={14} aria-hidden="true" /> Collected with love, kept forever.</footer>
+    </main>
   )
 }
