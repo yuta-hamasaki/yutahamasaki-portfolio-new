@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import * as React from "react"
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -72,18 +72,18 @@ const fallbackEducation: Education[] = [
 // ]
 
 export function AboutSection() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const titleRef = useRef<HTMLHeadingElement>(null)
-  const contentRef = useRef<HTMLDivElement>(null)
-  const educationRef = useRef<HTMLDivElement>(null)
-  const experienceRef = useRef<HTMLDivElement>(null)
+  const sectionRef = React.useRef<HTMLElement>(null)
+  const titleRef = React.useRef<HTMLHeadingElement>(null)
+  const contentRef = React.useRef<HTMLDivElement>(null)
+  const educationRef = React.useRef<HTMLDivElement>(null)
+  const experienceRef = React.useRef<HTMLDivElement>(null)
 
-  const [profile, setProfile] = useState<Profile>(fallbackProfile)
-  const [education, setEducation] = useState<Education[]>(fallbackEducation)
-  // const [experience, setExperience] = useState<Experience[]>(fallbackExperience)
-  const [loading, setLoading] = useState(true)
+  const [profile, setProfile] = React.useState<Profile>(fallbackProfile)
+  const [education, setEducation] = React.useState<Education[]>(fallbackEducation)
+  // const [experience, setExperience] = React.useState<Experience[]>(fallbackExperience)
+  const [loading, setLoading] = React.useState(true)
 
-  useEffect(() => {
+  React.useEffect(() => {
     const fetchData = async () => {
       try {
         const [
@@ -109,7 +109,7 @@ export function AboutSection() {
     fetchData()
   }, [])
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (loading) return
 
     const ctx = gsap.context(() => {
@@ -173,26 +173,26 @@ export function AboutSection() {
   }
 
   return (
-    <section id="about" ref={sectionRef} className="py-20">
+    <section id="about" ref={sectionRef} className="section-shell">
       <div className="container-max section-padding">
-        <div className="text-center mb-16">
-          <p className="text-xl sm:text-xl font-bold mb-1">私について</p>
-          <h2 ref={titleRef} className="text-3xl sm:text-4xl font-bold mb-4">
+        <div className="mb-14 text-center sm:mb-16">
+          <p className="eyebrow">Get to know me</p>
+          <h2 ref={titleRef} className="mb-4 text-4xl font-black tracking-tight sm:text-6xl">
             About <span className="gradient-text">Me</span>
           </h2>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid gap-7 lg:grid-cols-[.8fr_1.2fr]">
           {/* Personal Story */}
           <div ref={contentRef} className="lg:col-span-1">
-            <Card className="h-full">
-              <CardContent className="p-6">
+            <Card className="soft-card h-full rounded-[2rem]">
+              <CardContent className="p-8">
                 <Image 
                 src={profile.profileImage.url} 
                 alt="{profile.profileImage.alt}"
                 width={150}
                 height={150}
-                className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
+                className="mx-auto mb-5 h-36 w-36 rounded-[2rem] object-cover ring-8 ring-secondary/40"
                 />
                 <h3 className="text-[14px] text-center font-semibold">Yuta Hamasaki</h3>
                 <h3 className="text-[14px] text-center font-semibold mb-4">濱﨑雄太</h3>
@@ -215,8 +215,8 @@ export function AboutSection() {
             </h3>
             <div className="space-y-6">
               {education.map((edu) => (
-                <Card key={edu.id}>
-                  <CardContent className="p-6">
+                <Card key={edu.id} className="soft-card rounded-[2rem]">
+                  <CardContent className="p-7 sm:p-8">
                     <div className="flex items-start justify-between mb-2">
                       <h4 className="font-semibold text-[14px]">{edu.degree}</h4>
                       <Badge variant="outline" className="text-xs">

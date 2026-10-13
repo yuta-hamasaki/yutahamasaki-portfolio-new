@@ -1,16 +1,16 @@
 "use client"
 import { animate } from "animejs";
-import { useEffect, useRef } from "react";
+import * as React from "react";
 import '@/app/album/vanmemory/album.css';
 
 const ITEM_DISTANCE = 10;
 
-const PhotoCard = (props:{imageData:string[]}) => {
+export function PhotoCard(props: { imageData: string[] }) {
   
-  const el = useRef<HTMLDivElement>(null);
+  const el = React.useRef<HTMLDivElement>(null);
   let endPosition:number, startPosition:number;
 
-  useEffect(() => {
+  React.useEffect(() => {
 
     const cards = el.current!.children;
 
@@ -87,5 +87,3 @@ const PhotoCard = (props:{imageData:string[]}) => {
     </div>
   )
 }
-
-export default PhotoCard;

@@ -11,8 +11,10 @@ import { createClient } from "microcms-js-sdk"
 
 // Create MicroCMS client
 export const client = createClient({
-  serviceDomain: process.env.NEXT_PUBLIC_MICROCMS_SERVICE_DOMAIN! || "yutahamasaki",
-  apiKey: process.env.NEXT_PUBLIC_MICROCMS_API_KEY!,
+  serviceDomain: process.env.NEXT_PUBLIC_MICROCMS_SERVICE_DOMAIN || "yutahamasaki",
+  // A non-empty development value lets the static fallback content render when
+  // CMS credentials have not been configured (requests still fail gracefully).
+  apiKey: process.env.NEXT_PUBLIC_MICROCMS_API_KEY || "local-fallback",
 })
 
 
