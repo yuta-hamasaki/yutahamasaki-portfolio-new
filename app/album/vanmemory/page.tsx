@@ -1,7 +1,4 @@
-import PhotoCard from '@/components/photo-card';
-import Link from 'next/link';
-import { ArrowLeft, Heart, MapPin, Sparkles } from 'lucide-react';
-import './album.css';
+import { PhotoCard } from '@/components/photo-card';
 
 const imageData = [
   'https://gallary-lovat.vercel.app/vanphoto/van1.JPG',

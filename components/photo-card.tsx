@@ -6,7 +6,7 @@ import '@/app/album/vanmemory/album.css';
 import { useState } from "react"
 import { ArrowLeft, ArrowRight, RotateCcw } from "lucide-react"
 
-const PhotoCard = (props:{imageData:string[]}) => {
+export function PhotoCard(props: { imageData: string[] }) {
   
   const el = React.useRef<HTMLDivElement>(null);
   let endPosition:number, startPosition:number;
